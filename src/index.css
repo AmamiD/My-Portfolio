@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+/* small extras */
+:root {
+  color-scheme: dark;
+}
