@@ -1,11 +1,19 @@
 import Container from "./Container";
-import { aboutText, quickStats, aboutHighlights, profile } from "../data/portfolio";
-import { FaGraduationCap, FaLaptopCode, FaBrain, FaBullseye } from "react-icons/fa";
+import {
+  aboutText,
+  quickStats,
+  aboutHighlights,
+  profile,
+} from "../data/portfolio";
+import {
+  FaGraduationCap,
+  FaLaptopCode,
+  FaBrain,
+  FaBullseye,
+} from "react-icons/fa";
 
 function Underline() {
-  return (
-    <div className="mt-4 h-1 w-28 rounded-full bg-gradient-to-r from-emerald-400 to-indigo-500" />
-  );
+  return <div className="mt-4 h-1 w-28 rounded-full bg-brand-grad" />;
 }
 
 function StatRow({ value, label }) {
@@ -18,7 +26,7 @@ function StatRow({ value, label }) {
 }
 
 function iconFor(name) {
-  const cls = "text-3xl text-emerald-300";
+  const cls = "text-3xl text-brand-soft";
   if (name === "graduation") return <FaGraduationCap className={cls} />;
   if (name === "code") return <FaLaptopCode className={cls} />;
   if (name === "brain") return <FaBrain className={cls} />;
@@ -37,8 +45,15 @@ function HighlightCard({ title, desc, icon }) {
 
 export default function About() {
   return (
-    <section id="about" className="border-t border-white/10">
-      <Container className="py-16 md:py-20">
+    <section
+      id="about"
+      className="relative overflow-hidden border-t border-white/10"
+    >
+      {/* Static Background (same as Hero, NO animation) */}
+      <div className="section-brand-bg" />
+      <div className="section-brand-dots" />
+
+      <Container className="relative py-16 md:py-20">
         <div className="grid gap-14 md:grid-cols-[1.25fr_0.75fr]">
           {/* LEFT */}
           <div>
@@ -72,8 +87,8 @@ export default function About() {
             <a
               href={profile.resumeUrl}
               target="_blank"
-              rel="noopener"
-              className="hover-pop mt-12 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-emerald-400 to-indigo-500 px-10 py-4 text-base font-extrabold text-slate-950 shadow-lg shadow-cyan-500/15 hover:opacity-95"
+              rel="noopener noreferrer"
+              className="hover-pop mt-12 inline-flex items-center justify-center rounded-full bg-brand-grad px-10 py-4 text-base font-extrabold text-[#180018] shadow-lg hover:opacity-95"
             >
               Download Resume
             </a>

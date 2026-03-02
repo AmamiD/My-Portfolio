@@ -2,26 +2,20 @@ import Container from "./Container";
 import { education } from "../data/portfolio";
 
 function Underline() {
-  return (
-    <div className="mt-4 h-1 w-28 rounded-full bg-gradient-to-r from-emerald-400 to-indigo-500" />
-  );
+  return <div className="mt-4 h-1 w-28 rounded-full bg-brand-grad" />;
 }
 
 function EduCard({ item }) {
   return (
     <div className="hover-pop rounded-3xl border border-white/10 bg-white/5 p-7 shadow-sm">
       {/* Year pill */}
-      <div className="inline-flex items-center rounded-full bg-gradient-to-r from-emerald-400 to-indigo-500 px-4 py-2 text-sm font-bold text-slate-950">
+      <div className="inline-flex items-center rounded-full bg-brand-grad px-4 py-2 text-sm font-bold text-[#180018]">
         {item.year}
       </div>
 
-      <h3 className="mt-5 text-xl font-extrabold text-white">
-        {item.title}
-      </h3>
+      <h3 className="mt-5 text-xl font-extrabold text-white">{item.title}</h3>
 
-      <p className="mt-3 font-semibold text-emerald-300">
-        {item.institute}
-      </p>
+      <p className="mt-3 font-semibold text-brand-soft">{item.institute}</p>
 
       <div className="mt-4 space-y-2 text-white/55">
         {(item.lines || []).map((t) => (
@@ -36,8 +30,15 @@ function EduCard({ item }) {
 
 export default function Education() {
   return (
-    <section id="education" className="border-t border-white/10">
-      <Container className="py-16 md:py-20">
+    <section
+      id="education"
+      className="relative overflow-hidden border-t border-white/10"
+    >
+      {/* Static Background (same as Hero/About, NO animation) */}
+      <div className="section-brand-bg" />
+      <div className="section-brand-dots" />
+
+      <Container className="relative py-16 md:py-20">
         {/* Main title */}
         <h2 className="text-6xl font-extrabold tracking-tight">Education</h2>
         <Underline />

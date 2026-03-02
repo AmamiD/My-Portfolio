@@ -1,11 +1,106 @@
 @import "tailwindcss";
 
-/* small extras */
 :root {
   color-scheme: dark;
+
+  /* ===== PALETTE (from your teal image) ===== */
+  --teal-1: #045c68; /* accent/light */
+  --teal-2: #02515d; /* primary */
+  --teal-3: #02414c; /* deep teal */
+  --teal-4: #03343e; /* darker teal */
+  --teal-5: #051b21; /* near-black teal */
+  --black: #070f10;  /* almost black */
+
+  /* Glass */
+  --glass: rgba(255, 255, 255, 0.06);
+  --glass-strong: rgba(255, 255, 255, 0.10);
 }
 
-/* Pop-up hover effect for cards/buttons */
+/* ===== GLOBAL SITE BACKGROUND (animated) ===== */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(135deg, var(--teal-1), var(--black));
+  background-size: 200% 200%;
+  animation: siteGradientMove 14s ease-in-out infinite;
+}
+
+@keyframes siteGradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Depth overlay (stronger for readability) */
+.site-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(900px circle at 12% 55%, rgba(4, 92, 104, 0.32), transparent 62%),
+    radial-gradient(900px circle at 72% 35%, rgba(2, 81, 93, 0.20), transparent 58%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.72));
+  z-index: -1;
+}
+
+/* Subtle moving dots */
+.site-dots {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.14;
+  background-image: radial-gradient(
+    circle at 18px 18px,
+    rgba(255, 255, 255, 0.16) 2px,
+    transparent 3px
+  );
+  background-size: 140px 140px;
+  animation: dotsDrift 18s linear infinite;
+  z-index: -1;
+}
+
+@keyframes dotsDrift {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-140px); }
+}
+
+/* ===== BRAND UTILITY CLASSES ===== */
+.bg-brand-grad {
+  background: linear-gradient(135deg, var(--teal-1), var(--black));
+}
+
+.text-brand-grad {
+  background: linear-gradient(135deg, var(--teal-1), var(--black));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-brand-soft {
+  color: rgba(174, 234, 242, 0.95); /* brighter readable teal */
+}
+
+/* ===== GLASSMORPHISM ===== */
+.glass {
+  background: var(--glass);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.glass-strong {
+  background: var(--glass-strong);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* ===== POP-UP HOVER EFFECT ===== */
 .hover-pop {
   transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease;
   will-change: transform;
@@ -16,4 +111,64 @@
 }
 .hover-pop:active {
   transform: translateY(-2px) scale(1.01);
+}
+
+/* ===== ROLE TYPING (cursor disappears after typing) ===== */
+.hero-typing {
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  border-right: 3px solid rgba(255, 255, 255, 0.85);
+  width: 0;
+  animation:
+    typing 3s steps(45, end) forwards,
+    blinkCursor 0.8s steps(1, end) 4,
+    hideCursor 0s linear 3.2s forwards;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blinkCursor {
+  0%, 50% { border-color: rgba(255, 255, 255, 0.85); }
+  51%, 100% { border-color: transparent; }
+}
+
+@keyframes hideCursor {
+  to { border-right-color: transparent; }
+}
+
+/* ===== HERO PHOTO ANIMATIONS ===== */
+
+/* Floating effect */
+.hero-photo-float {
+  animation: heroFloat 4.5s ease-in-out infinite;
+}
+
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Glowing pulse behind photo */
+.hero-photo-glow {
+  background: radial-gradient(circle, rgba(4, 92, 104, 0.35), transparent 65%);
+  animation: heroGlowPulse 3.8s ease-in-out infinite;
+}
+
+@keyframes heroGlowPulse {
+  0%, 100% { transform: scale(1); opacity: 0.55; }
+  50% { transform: scale(1.08); opacity: 0.85; }
+}
+
+/* Hover pop + slight rotate */
+.hero-photo-hover {
+  transition: transform 250ms ease, box-shadow 250ms ease;
+  will-change: transform;
+}
+.hero-photo-hover:hover {
+  transform: scale(1.03) rotate(-1deg);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
 }

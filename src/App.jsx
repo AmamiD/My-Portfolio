@@ -11,7 +11,12 @@ import Footer from "./components/Footer";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    // Remove bg-slate-950 because we now use the global animated gradient in index.css
+    <div className="min-h-screen text-slate-100">
+      {/* Global overlay layers (depth + dots) */}
+      <div className="site-overlay" />
+      <div className="site-dots" />
+
       <Navbar />
       <main>
         <Hero />
