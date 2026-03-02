@@ -9,8 +9,8 @@ export const profile = {
     "Passionate about software and technology, seeking a challenging role to apply my skills, expand my knowledge, and contribute to organizational success while building a strong foundation for my career.",
   location: "Colombo, Sri Lanka",
   email: "amamidanansuriya@gmail.com",
-  github: "https://github.com/AmamiDanansuriya",
-  linkedin: "https://www.linkedin.com/in/AmamiDanansuriya",
+  github: "https://github.com/AmamiD",
+  linkedin: "https://www.linkedin.com/in/amami-danansuriya-48a784303/",
   resumeUrl: "/Resume.pdf",
   photoUrl: "/profile.jpg",
 };
@@ -101,7 +101,7 @@ export const certifications = [
     title: "Introduction to AI",
     provider: "Simplilearn",
     icon: "ai",
-    link: "",
+    link: "https://www.linkedin.com/feed/update/urn:li:activity:7434211432260513792/",
   },
   {
     title: "Introduction to Java",
@@ -190,5 +190,66 @@ export const skillsShowcase = [
     title: "Tools & Methodologies",
     icon: "tools",
     items: ["VS Code", "R Studio", "Figma", "MS Office", "Agile", "Waterfall"],
+  },
+];
+
+export const softSkills = [
+  {
+    title: "Public Speaking",
+    desc: "Effective communication and presentation skills",
+    icon: "speak",
+  },
+  {
+    title: "Project Management",
+    desc: "Planning, execution and delivery of projects",
+    icon: "manage",
+  },
+  {
+    title: "Self Management",
+    desc: "Disciplined and self-motivated work approach",
+    icon: "self",
+  },
+  {
+    title: "Teamwork & Leadership",
+    desc: "Collaborative team player with leadership potential",
+    icon: "team",
+  },
+  {
+    title: "Responsible & Honest",
+    desc: "Ethical approach with accountability and integrity",
+    icon: "honest",
+  },
+  {
+    title: "Critical Thinking",
+    desc: "Analytical problem-solving and decision making",
+    icon: "think",
+  },
+];
+
+/**
+ * CONTACT CARDS SECTION
+ */
+
+export const contactCards = [
+  {
+    title: "Email",
+    value: "amamidanansuriya@gmail.com",
+    note: "Feel free to reach out!",
+    icon: "email",
+    link: "mailto:amamidanansuriya@gmail.com",
+  },
+  {
+    title: "LinkedIn",
+    value: "https://www.linkedin.com/in/amami-danansuriya-48a784303/",
+    note: "Connect professionally",
+    icon: "linkedin",
+    link: "https://www.linkedin.com/in/amami-danansuriya-48a784303/",
+  },
+  {
+    title: "GitHub",
+    value: "https://github.com/AmamiD",
+    note: "View my projects and code",
+    icon: "github",
+    link: "https://github.com/AmamiD",
   },
 ];

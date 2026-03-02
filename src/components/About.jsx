@@ -27,7 +27,7 @@ function iconFor(name) {
 
 function HighlightCard({ title, desc, icon }) {
   return (
-    <div className="rounded-3xl border border-white/10 bg-white/5 p-7 shadow-sm">
+    <div className="hover-pop rounded-3xl border border-white/10 bg-white/5 p-7 shadow-sm">
       <div className="mb-5">{iconFor(icon)}</div>
       <h3 className="text-xl font-bold text-white">{title}</h3>
       <p className="mt-4 text-base leading-7 text-white/65">{desc}</p>
@@ -46,12 +46,8 @@ export default function About() {
             <Underline />
 
             <div className="mt-10 space-y-8 text-lg leading-9 text-white/80">
-              <p>
-                {aboutText.p1}
-              </p>
-              <p>
-                {aboutText.p2}
-              </p>
+              <p>{aboutText.p1}</p>
+              <p>{aboutText.p2}</p>
             </div>
 
             {/* Cards 2x2 */}
@@ -72,12 +68,12 @@ export default function About() {
               ))}
             </div>
 
-            {/* OPTIONAL: Resume button like screenshot */}
+            {/* Resume button */}
             <a
               href={profile.resumeUrl}
               target="_blank"
               rel="noopener"
-              className="mt-12 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-emerald-400 to-indigo-500 px-10 py-4 text-base font-extrabold text-slate-950 shadow-lg shadow-cyan-500/15 hover:opacity-95"
+              className="hover-pop mt-12 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-emerald-400 to-indigo-500 px-10 py-4 text-base font-extrabold text-slate-950 shadow-lg shadow-cyan-500/15 hover:opacity-95"
             >
               Download Resume
             </a>

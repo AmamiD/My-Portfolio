@@ -18,8 +18,6 @@ export default function Hero() {
         <div className="grid items-center gap-12 md:grid-cols-2">
           {/* Left */}
           <div>
-            {/* Removed the small AMAMI label here */}
-
             <h1 className="mt-4 text-5xl font-extrabold leading-[0.95] md:text-6xl">
               <span className="block bg-gradient-to-r from-emerald-300 via-cyan-300 to-blue-400 bg-clip-text text-transparent">
                 {profile.firstName}
@@ -37,24 +35,24 @@ export default function Hero() {
               {profile.summary}
             </p>
 
-            {/* Buttons */}
+            {/* Buttons (POP) */}
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <button
                 onClick={() => scrollTo("projects")}
-                className="rounded-full bg-gradient-to-r from-emerald-400 to-blue-500 px-8 py-3 font-bold text-slate-950 shadow-lg shadow-cyan-500/20 hover:opacity-95"
+                className="hover-pop rounded-full bg-gradient-to-r from-emerald-400 to-blue-500 px-8 py-3 font-bold text-slate-950 shadow-lg shadow-cyan-500/20 hover:opacity-95"
               >
                 View Projects
               </button>
 
               <button
                 onClick={() => scrollTo("contact")}
-                className="rounded-full border border-emerald-300/60 px-10 py-3 font-bold text-emerald-200 hover:bg-white/5"
+                className="hover-pop rounded-full border border-emerald-300/60 px-10 py-3 font-bold text-emerald-200 hover:bg-white/5"
               >
                 Contact Me
               </button>
             </div>
 
-            {/* Social icons */}
+            {/* Social icons (POP) */}
             <div className="mt-10 flex items-center gap-4">
               <IconCircle href={profile.linkedin} label="LinkedIn">
                 <FaLinkedinIn />
@@ -63,8 +61,6 @@ export default function Hero() {
                 <FaGithub />
               </IconCircle>
             </div>
-
-            {/* Removed Colombo + email line here */}
           </div>
 
           {/* Right photo */}
@@ -93,7 +89,7 @@ function IconCircle({ href, label, children }) {
       aria-label={label}
       target="_blank"
       rel="noopener noreferrer"
-      className="grid h-12 w-12 place-items-center rounded-full border border-emerald-300/60 text-emerald-200 hover:bg-white/5"
+      className="hover-pop grid h-12 w-12 place-items-center rounded-full border border-emerald-300/60 text-emerald-200 hover:bg-white/5"
     >
       <span className="text-lg">{children}</span>
     </a>

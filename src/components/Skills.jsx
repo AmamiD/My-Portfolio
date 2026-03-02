@@ -25,7 +25,7 @@ function Pill({ text }) {
 
 function SkillCard({ s }) {
   return (
-    <div className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-sm">
+    <div className="hover-pop rounded-3xl border border-white/10 bg-white/5 p-10 shadow-sm">
       <div className="flex items-center gap-4">
         <div>{iconFor(s.icon)}</div>
         <h3 className="text-3xl font-extrabold text-white">{s.title}</h3>

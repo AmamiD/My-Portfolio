@@ -20,7 +20,7 @@ function CertCard({ item }) {
   const hasLink = Boolean(item.link);
 
   return (
-    <div className="relative min-h-[140px] rounded-2xl border border-white/10 bg-white/5 p-6 pb-14 shadow-sm">
+    <div className="hover-pop relative min-h-[140px] rounded-2xl border border-white/10 bg-white/5 p-6 pb-14 shadow-sm">
       <div className="flex items-start gap-4">
         {/* Icon box */}
         <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-white/5">
@@ -45,12 +45,12 @@ function CertCard({ item }) {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="View certificate"
-          className="absolute bottom-5 right-5 grid h-11 w-11 place-items-center rounded-full bg-emerald-400/20 text-emerald-300 hover:bg-emerald-400/30"
+          className="hover-pop absolute bottom-5 right-5 grid h-11 w-11 place-items-center rounded-full bg-emerald-400/20 text-emerald-300 hover:bg-emerald-400/30"
         >
           <FaEye />
         </a>
       ) : (
-        <div className="absolute bottom-5 right-5 grid h-11 w-11 place-items-center rounded-full bg-emerald-400/15 text-emerald-300/60">
+        <div className="hover-pop absolute bottom-5 right-5 grid h-11 w-11 place-items-center rounded-full bg-emerald-400/15 text-emerald-300/60">
           <FaEye />
         </div>
       )}

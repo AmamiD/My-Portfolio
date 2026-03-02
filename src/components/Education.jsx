@@ -9,7 +9,7 @@ function Underline() {
 
 function EduCard({ item }) {
   return (
-    <div className="rounded-3xl border border-white/10 bg-white/5 p-7 shadow-sm">
+    <div className="hover-pop rounded-3xl border border-white/10 bg-white/5 p-7 shadow-sm">
       {/* Year pill */}
       <div className="inline-flex items-center rounded-full bg-gradient-to-r from-emerald-400 to-indigo-500 px-4 py-2 text-sm font-bold text-slate-950">
         {item.year}

@@ -28,7 +28,7 @@ function ProjectCard({ p }) {
   const hasGithub = Boolean(p.github);
 
   return (
-    <div className="relative rounded-3xl border border-white/10 bg-white/5 p-8 shadow-sm">
+    <div className="hover-pop relative rounded-3xl border border-white/10 bg-white/5 p-8 shadow-sm">
       {/* Top icon */}
       <div className="mb-6">{iconFor(p.icon)}</div>
 
