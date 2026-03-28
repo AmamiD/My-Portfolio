@@ -13,7 +13,7 @@ function Underline() {
 }
 
 function iconFor(name) {
-  const cls = "text-3xl text-brand-soft";
+  const cls = "text-2xl sm:text-3xl text-brand-soft";
   if (name === "fitness") return <FaDumbbell className={cls} />;
   if (name === "hotel") return <FaHotel className={cls} />;
   if (name === "mobile") return <FaMobileAlt className={cls} />;
@@ -22,7 +22,7 @@ function iconFor(name) {
 
 function TechPill({ text }) {
   return (
-    <span className="rounded-full bg-[#045C68]/20 px-5 py-2 text-sm font-semibold text-white">
+    <span className="rounded-full bg-[#045C68]/20 px-3 py-1.5 text-xs font-semibold text-white sm:px-5 sm:py-2 sm:text-sm">
       {text}
     </span>
   );
@@ -32,37 +32,47 @@ function ProjectCard({ p }) {
   const hasGithub = Boolean(p.github);
 
   return (
-    <div className="hover-pop glass relative rounded-3xl p-8">
-      <div className="mb-6">{iconFor(p.icon)}</div>
+    <div className="hover-pop glass relative rounded-3xl p-5 sm:p-6 md:p-8">
+      {/* Icon */}
+      <div className="mb-4 sm:mb-6">{iconFor(p.icon)}</div>
 
-      <h3 className="text-2xl font-extrabold text-white">{p.name}</h3>
+      {/* Title */}
+      <h3 className="text-lg font-extrabold text-white sm:text-xl md:text-2xl">
+        {p.name}
+      </h3>
 
-      <p className="mt-5 text-base leading-8 text-white/65">{p.desc}</p>
+      {/* Description */}
+      <p className="mt-4 text-sm leading-7 text-white/65 sm:text-base sm:leading-8">
+        {p.desc}
+      </p>
 
-      <div className="mt-8 flex flex-wrap gap-4">
+      {/* Tech stack */}
+      <div className="mt-6 flex flex-wrap gap-2 sm:mt-8 sm:gap-4">
         {p.tech.map((t) => (
           <TechPill key={t} text={t} />
         ))}
       </div>
 
-      <p className="mt-10 text-base leading-8 text-white/65">
+      {/* Features */}
+      <p className="mt-6 text-sm leading-7 text-white/65 sm:mt-8 sm:text-base sm:leading-8">
         <span className="font-extrabold text-white/80">Features:</span>{" "}
         {p.features}
       </p>
 
+      {/* GitHub button */}
       {hasGithub ? (
         <a
           href={p.github}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub Repository"
-          className="hover-pop absolute bottom-6 right-6 grid h-12 w-12 place-items-center rounded-xl bg-[#045C68]/20 text-white hover:bg-[#045C68]/35"
+          className="hover-pop absolute bottom-4 right-4 grid h-10 w-10 place-items-center rounded-lg bg-[#045C68]/20 text-white hover:bg-[#045C68]/35 sm:bottom-6 sm:right-6 sm:h-12 sm:w-12"
         >
-          <FaGithub className="text-2xl" />
+          <FaGithub className="text-lg sm:text-2xl" />
         </a>
       ) : (
-        <div className="absolute bottom-6 right-6 grid h-12 w-12 place-items-center rounded-xl bg-[#045C68]/10 text-white/35">
-          <FaGithub className="text-2xl" />
+        <div className="absolute bottom-4 right-4 grid h-10 w-10 place-items-center rounded-lg bg-[#045C68]/10 text-white/35 sm:bottom-6 sm:right-6 sm:h-12 sm:w-12">
+          <FaGithub className="text-lg sm:text-2xl" />
         </div>
       )}
     </div>
@@ -75,16 +85,19 @@ export default function Projects() {
       id="projects"
       className="relative overflow-hidden border-t border-white/10"
     >
+      {/* Background */}
       <div className="section-brand-bg" />
       <div className="section-brand-dots" />
 
       <Container className="relative py-16 md:py-20">
-        <h2 className="text-6xl font-extrabold tracking-tight text-white">
+        {/* Title */}
+        <h2 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
           Projects
         </h2>
         <Underline />
 
-        <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {/* Grid */}
+        <div className="mt-10 grid gap-5 sm:mt-12 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-8">
           {projects.map((p) => (
             <ProjectCard key={p.name} p={p} />
           ))}

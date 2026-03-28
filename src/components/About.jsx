@@ -19,8 +19,10 @@ function Underline() {
 function StatRow({ value, label }) {
   return (
     <div className="py-4">
-      <div className="text-3xl font-extrabold text-white">{value}</div>
-      <div className="mt-2 text-base text-white/55">{label}</div>
+      <div className="text-2xl font-extrabold text-white sm:text-3xl">
+        {value}
+      </div>
+      <div className="mt-2 text-sm text-white/55 sm:text-base">{label}</div>
     </div>
   );
 }
@@ -35,10 +37,12 @@ function iconFor(name) {
 
 function HighlightCard({ title, desc, icon }) {
   return (
-    <div className="hover-pop rounded-3xl border border-white/10 bg-white/5 p-7 shadow-sm">
+    <div className="hover-pop glass rounded-3xl p-5 sm:p-6 md:p-7">
       <div className="mb-5">{iconFor(icon)}</div>
-      <h3 className="text-xl font-bold text-white">{title}</h3>
-      <p className="mt-4 text-base leading-7 text-white/65">{desc}</p>
+      <h3 className="text-lg font-bold text-white sm:text-xl">{title}</h3>
+      <p className="mt-4 text-sm leading-7 text-white/65 sm:text-base">
+        {desc}
+      </p>
     </div>
   );
 }
@@ -49,24 +53,25 @@ export default function About() {
       id="about"
       className="relative overflow-hidden border-t border-white/10"
     >
-      {/* Static Background (same as Hero, NO animation) */}
       <div className="section-brand-bg" />
       <div className="section-brand-dots" />
 
       <Container className="relative py-16 md:py-20">
-        <div className="grid gap-14 md:grid-cols-[1.25fr_0.75fr]">
+        <div className="grid gap-12 md:grid-cols-[1.25fr_0.75fr] md:gap-14">
           {/* LEFT */}
           <div>
-            <h2 className="text-6xl font-extrabold tracking-tight">About Me</h2>
+            <h2 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
+              About Me
+            </h2>
             <Underline />
 
-            <div className="mt-10 space-y-8 text-lg leading-9 text-white/80">
+            <div className="mt-8 space-y-6 text-base leading-8 text-white/80 sm:mt-10 sm:space-y-8 sm:text-lg sm:leading-9">
               <p>{aboutText.p1}</p>
               <p>{aboutText.p2}</p>
             </div>
 
-            {/* Cards 2x2 */}
-            <div className="mt-14 grid gap-8 md:grid-cols-2">
+            {/* Cards */}
+            <div className="mt-10 grid gap-5 sm:mt-12 sm:gap-6 md:mt-14 md:grid-cols-2 md:gap-8">
               {aboutHighlights.map((c) => (
                 <HighlightCard key={c.title} {...c} />
               ))}
@@ -74,10 +79,12 @@ export default function About() {
           </div>
 
           {/* RIGHT */}
-          <div className="pt-6">
-            <h3 className="text-4xl font-extrabold">Quick Stats</h3>
+          <div className="pt-2 md:pt-6">
+            <h3 className="text-2xl font-extrabold text-white sm:text-3xl md:text-4xl">
+              Quick Stats
+            </h3>
 
-            <div className="mt-8 divide-y divide-white/10">
+            <div className="mt-6 divide-y divide-white/10 sm:mt-8">
               {quickStats.map((s) => (
                 <StatRow key={s.label} value={s.value} label={s.label} />
               ))}
@@ -88,7 +95,7 @@ export default function About() {
               href={profile.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover-pop mt-12 inline-flex items-center justify-center rounded-full bg-brand-grad px-10 py-4 text-base font-extrabold text-[#180018] shadow-lg hover:opacity-95"
+              className="hover-pop mt-10 inline-flex items-center justify-center rounded-full bg-brand-grad px-8 py-3 text-sm font-extrabold text-white shadow-lg hover:opacity-95 sm:mt-12 sm:px-10 sm:py-4 sm:text-base"
             >
               Download Resume
             </a>

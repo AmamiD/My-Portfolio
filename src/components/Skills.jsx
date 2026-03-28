@@ -13,7 +13,7 @@ function Underline() {
 }
 
 function iconFor(name) {
-  const cls = "text-3xl text-brand-soft";
+  const cls = "text-2xl sm:text-3xl text-brand-soft";
   if (name === "code") return <FaCode className={cls} />;
   if (name === "mobile") return <FaMobileAlt className={cls} />;
   if (name === "db") return <FaDatabase className={cls} />;
@@ -23,7 +23,7 @@ function iconFor(name) {
 
 function Pill({ text }) {
   return (
-    <span className="rounded-full bg-white/8 px-5 py-3 text-sm font-semibold text-white/90">
+    <span className="rounded-full bg-white/8 px-4 py-2 text-xs font-semibold text-white/90 sm:px-5 sm:py-3 sm:text-sm">
       {text}
     </span>
   );
@@ -31,13 +31,15 @@ function Pill({ text }) {
 
 function SkillCard({ s }) {
   return (
-    <div className="hover-pop glass rounded-3xl p-10">
-      <div className="flex items-center gap-4">
+    <div className="hover-pop glass rounded-3xl p-5 sm:p-6 md:p-8 lg:p-10">
+      <div className="flex items-center gap-3 sm:gap-4">
         <div>{iconFor(s.icon)}</div>
-        <h3 className="text-3xl font-extrabold text-white">{s.title}</h3>
+        <h3 className="text-xl font-extrabold text-white sm:text-2xl lg:text-3xl">
+          {s.title}
+        </h3>
       </div>
 
-      <div className="mt-10 flex flex-wrap gap-4">
+      <div className="mt-6 flex flex-wrap gap-2 sm:mt-8 sm:gap-3 md:mt-10 md:gap-4">
         {s.items.map((i) => (
           <Pill key={i} text={i} />
         ))}
@@ -56,12 +58,12 @@ export default function Skills() {
       <div className="section-brand-dots" />
 
       <Container className="relative py-16 md:py-20">
-        <h2 className="text-6xl font-extrabold tracking-tight text-white">
+        <h2 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
           Technical Expertise
         </h2>
         <Underline />
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-3">
+        <div className="mt-10 grid gap-5 sm:mt-12 sm:gap-6 lg:grid-cols-3 md:gap-8 lg:gap-10">
           {skillsShowcase.map((s) => (
             <SkillCard key={s.title} s={s} />
           ))}

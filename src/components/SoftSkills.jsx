@@ -14,7 +14,7 @@ function Underline() {
 }
 
 function iconFor(name) {
-  const cls = "text-4xl text-brand-soft";
+  const cls = "text-3xl sm:text-4xl text-brand-soft";
   if (name === "speak") return <FaComments className={cls} />;
   if (name === "manage") return <FaTasks className={cls} />;
   if (name === "self") return <FaUserCog className={cls} />;
@@ -25,14 +25,16 @@ function iconFor(name) {
 
 function SoftCard({ item }) {
   return (
-    <div className="hover-pop glass rounded-3xl p-8 text-center">
-      <div className="mb-6 flex justify-center">{iconFor(item.icon)}</div>
+    <div className="hover-pop glass rounded-3xl p-5 text-center sm:p-6 md:p-8">
+      <div className="mb-5 flex justify-center sm:mb-6">{iconFor(item.icon)}</div>
 
-      <h3 className="text-2xl font-extrabold leading-snug text-white">
+      <h3 className="text-lg font-extrabold leading-snug text-white sm:text-xl md:text-2xl">
         {item.title}
       </h3>
 
-      <p className="mt-4 text-base leading-7 text-white/60">{item.desc}</p>
+      <p className="mt-3 text-sm leading-7 text-white/60 sm:mt-4 sm:text-base">
+        {item.desc}
+      </p>
     </div>
   );
 }
@@ -47,12 +49,12 @@ export default function SoftSkills() {
       <div className="section-brand-dots" />
 
       <Container className="relative py-16 md:py-20">
-        <h2 className="text-4xl font-extrabold text-white">
+        <h2 className="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl">
           Soft Skills & Professional Attributes
         </h2>
         <Underline />
 
-        <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-5 sm:mt-12 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 md:gap-8 lg:gap-10">
           {softSkills.map((s) => (
             <SoftCard key={s.title} item={s} />
           ))}

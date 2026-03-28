@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Container from "./Container";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const links = [
   { id: "home", label: "Home" },
@@ -12,9 +13,14 @@ const links = [
 
 export default function Navbar() {
   const [active, setActive] = useState("home");
+  const [open, setOpen] = useState(false);
 
   const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setOpen(false);
+    document.getElementById(id)?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
 
   useEffect(() => {
@@ -52,7 +58,7 @@ export default function Navbar() {
               AMAMI
             </button>
 
-            {/* Links right */}
+            {/* Desktop links */}
             <div className="ml-auto hidden items-center gap-10 md:flex">
               {links.map((l) => {
                 const isActive = active === l.id;
@@ -76,7 +82,42 @@ export default function Navbar() {
                 );
               })}
             </div>
+
+            {/* Mobile menu button */}
+            <button
+              onClick={() => setOpen(!open)}
+              className="ml-auto text-white md:hidden"
+              aria-label="Toggle menu"
+            >
+              {open ? <FaTimes size={22} /> : <FaBars size={22} />}
+            </button>
           </nav>
+
+          {/* Mobile dropdown */}
+          {open && (
+            <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-xl md:hidden">
+              <div className="flex flex-col gap-4">
+                {links.map((l) => {
+                  const isActive = active === l.id;
+
+                  return (
+                    <button
+                      key={l.id}
+                      onClick={() => scrollTo(l.id)}
+                      className={[
+                        "text-left text-sm font-semibold transition",
+                        isActive
+                          ? "text-[#AEEAF2]"
+                          : "text-white/80 hover:text-white",
+                      ].join(" ")}
+                    >
+                      {l.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </Container>
       </div>
     </header>

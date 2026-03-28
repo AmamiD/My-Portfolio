@@ -19,7 +19,7 @@ export const profile = {
  * ABOUT SECTION (matches your reference layout)
  */
 export const aboutText = {
-  p1: `I am a Software Engineering Undergraduate passionate about software and AI technology. I enjoy learning new tools and building real projects that improve my skills.`,
+  p1: `I am a Data Science Undergraduate passionate about software and AI technology. I enjoy learning new tools and building real projects that improve my skills.`,
   p2: `With hands-on experience across multiple technologies, I’m continuously working to expand my knowledge and apply my technical expertise to solve real-world problems in a dynamic environment.`,
 };
 
