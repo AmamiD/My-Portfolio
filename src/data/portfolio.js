@@ -4,7 +4,7 @@ export const profile = {
   name: "Amami Danansuriya",
   firstName: "Amami",
   lastName: "Danansuriya",
-  role: "Data Science Undergraduate | AI Engineer",
+  role: "Data Science | AI Engineer Undergraduate ",
   summary:
     "Passionate about software and technology, seeking a challenging role to apply my skills, expand my knowledge, and contribute to organizational success while building a strong foundation for my career.",
   location: "Colombo, Sri Lanka",

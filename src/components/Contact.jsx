@@ -1,7 +1,8 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import Container from "./Container";
 import { contactCards } from "../data/portfolio";
 import { FaEnvelope, FaLinkedinIn, FaGithub, FaPaperPlane } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
 
 function Underline() {
   return <div className="mt-4 h-1 w-28 rounded-full bg-brand-grad" />;
@@ -43,45 +44,84 @@ function ContactInfoCard({ c }) {
   );
 }
 
-function Input({ placeholder, value, onChange, type = "text" }) {
+function Input({ placeholder, value, onChange, type = "text", name }) {
   return (
     <input
+      name={name}
       type={type}
       placeholder={placeholder}
       value={value}
       onChange={(e) => onChange(e.target.value)}
+      required
       className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/35 outline-none focus:border-[#045C68]/70 sm:px-5 sm:py-4 sm:text-base"
     />
   );
 }
 
-function TextArea({ placeholder, value, onChange }) {
+function TextArea({ placeholder, value, onChange, name }) {
   return (
     <textarea
+      name={name}
       placeholder={placeholder}
       value={value}
       onChange={(e) => onChange(e.target.value)}
       rows={6}
+      required
       className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/35 outline-none focus:border-[#045C68]/70 sm:px-5 sm:py-4 sm:text-base"
     />
   );
 }
+
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [status, setStatus] = useState("");
+  const [sending, setSending] = useState(false);
 
-  const mailto = useMemo(() => {
-    const to = "amamidanansuriya@gmail.com";
-    const body = `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\n${message}`;
-    return (
-      `mailto:${to}` +
-      `?subject=${encodeURIComponent(subject || "Portfolio Contact")}` +
-      `&body=${encodeURIComponent(body)}`
-    );
-  }, [name, email, subject, message]);
+  const sendEmail = async (e) => {
+    e.preventDefault();
+
+    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+      setStatus("EmailJS is not configured yet. Please check your .env file.");
+      return;
+    }
+
+    try {
+      setSending(true);
+      setStatus("");
+
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          from_name: name,
+          from_email: email,
+          subject: subject,
+          message: message,
+        },
+        {
+          publicKey: PUBLIC_KEY,
+        }
+      );
+
+      setStatus("Message sent successfully.");
+      setName("");
+      setEmail("");
+      setSubject("");
+      setMessage("");
+    } catch (error) {
+      console.error("EmailJS error:", error);
+      setStatus("Failed to send message. Please try again.");
+    } finally {
+      setSending(false);
+    }
+  };
 
   return (
     <section
@@ -117,32 +157,51 @@ export default function Contact() {
               Send Message
             </h3>
 
-            <div className="mt-8 space-y-5 sm:mt-10 sm:space-y-6 md:space-y-8">
-              <Input placeholder="Your Name" value={name} onChange={setName} />
+            <form
+              onSubmit={sendEmail}
+              className="mt-8 space-y-5 sm:mt-10 sm:space-y-6 md:space-y-8"
+            >
               <Input
+                name="from_name"
+                placeholder="Your Name"
+                value={name}
+                onChange={setName}
+              />
+
+              <Input
+                name="from_email"
                 placeholder="Your Email"
                 value={email}
                 onChange={setEmail}
                 type="email"
               />
+
               <Input
+                name="subject"
                 placeholder="Subject"
                 value={subject}
                 onChange={setSubject}
               />
+
               <TextArea
+                name="message"
                 placeholder="Your Message"
                 value={message}
                 onChange={setMessage}
               />
 
-              <a
-                href={mailto}
-                className="hover-pop inline-flex items-center gap-3 rounded-xl bg-brand-grad px-6 py-3 text-sm font-extrabold text-white hover:opacity-95 sm:px-8 sm:py-4 sm:text-base"
+              <button
+                type="submit"
+                disabled={sending}
+                className="hover-pop inline-flex items-center gap-3 rounded-xl bg-brand-grad px-6 py-3 text-sm font-extrabold text-white hover:opacity-95 disabled:cursor-not-allowed disabled:opacity-60 sm:px-8 sm:py-4 sm:text-base"
               >
-                Submit <FaPaperPlane />
-              </a>
-            </div>
+                {sending ? "Sending..." : "Submit"} <FaPaperPlane />
+              </button>
+
+              {status && (
+                <p className="text-sm text-white/75">{status}</p>
+              )}
+            </form>
           </div>
         </div>
       </Container>
